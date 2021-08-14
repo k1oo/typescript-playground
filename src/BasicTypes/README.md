@@ -10,6 +10,7 @@ ___
 4. [Array](#Array)
 5. [Tuple](#Tuple)
 6. [Enum](#Enum)
+7. [Any](#Any)
 
 ___
 
@@ -63,7 +64,7 @@ console.log(typeof E, E); // string This is banana juice
 
 ### Array
 
-배열 타입은 특정 타입의 데이터만 담는 배열 선언이 가능하며, `any` 타입이나 ```OR(||)``` 연산자 등을 사용하여 여러 타입의 데이터를 담을 수도 있다.  
+배열 타입은 특정 타입의 데이터만 담는 배열 선언이 가능하며, [any](#Any) 타입이나 ```OR(|)``` 연산자 등을 사용하여 여러 타입의 데이터를 담을 수도 있다.  
 배열 타입은 `: TYPE[]`이나 제너릭을 사용한 `: Array<TYPE>`으로 지정할 수 있다.
 
 ```typescript
@@ -138,4 +139,29 @@ enum ColorDefined {
 const C: ColorDefined = ColorDefined.Blue;
 console.log(typeof C, C); // string Blue
 console.log(C[2]); // undefined
+```
+
+### Any
+`any`타입은 코드를 작성하며 알지 못하는 타입을 표현할 때 사용할 수 있으며, 컴파일 중에 점진적으로 타입 검사를 진행하거나, 아예 검사를 하지 않을 수 있다.  
+예를 들어 사용자로부터 받은 데이터나 서드 파티 라이브러리 등을 사용해 받은 값의 타입을 검사하지 않고, 컴파일 타임에 통과시킬 수 있다.
+```typescript
+let A: any;
+A = 'string';
+console.log(typeof A, A); // string string
+
+A = 4;
+A.toLowerCase(); // not compile error, runtime error
+console.log(typeof A, A); // number 4
+
+A = true;
+A.toLowerCase(); // not compile error, runtime error
+console.log(typeof A, A); // boolean true
+
+A = [1, 2, 'string'];
+A.toLowerCase(); // not compile error, runtime error
+console.log(typeof A, A); // object [ 1, 2, 'string' ]
+
+A = { number: 1, string: 'string' };
+A.toLowerCase(); // not compile error, runtime error
+console.log(typeof A, A); // object { number: 1, string: 'string' }
 ```
