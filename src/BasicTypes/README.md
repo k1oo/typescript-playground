@@ -12,6 +12,7 @@ ___
 6. [Enum](#Enum)
 7. [Any](#Any)
 8. [Void](#Void)
+9. [NullAndUndefined](#Null,&#32;Undefined)
 
 ___
 
@@ -27,7 +28,7 @@ const C: boolean = 1; // TS2322: Type 'number' is not assignable to type 'boolea
 
 ### Number
 
-자바스크립트와 동일하게 타입스크립트의 모든 숫자는 부동 소수 값이며, 부동 소수에는 number라는 타입을 사용한다.  
+자바스크립트와 동일하게 타입스크립트의 모든 숫자는 부동 소수 값이며, 부동 소수에는 `number` 타입을 사용한다.  
 16진수, 10진수, 8진수, 2진수, 소수 등이 이에 해당한다.
 
 ```typescript
@@ -183,4 +184,13 @@ let result: void = F();
 result = undefined;
 result = null;
 // result = 'success'; // compile error
+```
+
+### Null,&#32;Undefined
+
+`null` 타입과 `undefined` 타입은 각각 자신만을 할당할 수 있다.
+
+```typescript
+const A: undefined = undefined;
+const B: null = null;
 ```
