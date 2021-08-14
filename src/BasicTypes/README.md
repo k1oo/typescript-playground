@@ -16,6 +16,7 @@ ___
 10. [Void](#Void)
 11. [NullAndUndefined](#null-undefined)
 12. [Never](#Never)
+13. [Object](#Object)
 
 ___
 
@@ -229,7 +230,7 @@ const B: null = null;
 ### Never
 
 `never`타입은 절대 발생할 수 없는 타입을 나타내며, 예시로 항상 오류를 발생시키는 함수나 절대 반환하지 않는 타입으로 사용된다.  
-`never`타입은 모든 타입에 할당 가능한 하위 타입이지만 자신을 제외한 어떤 타입도 `never`타입에 할당하지 못하며, 하위 타입이 아니다. 심지어 [any](#Any) 도 `never`타입에 할당할 수 없다.   
+`never`타입은 모든 타입에 할당 가능한 하위 타입이지만 자신을 제외한 어떤 타입도 `never`타입에 할당하지 못하며, 하위 타입이 아니다. 심지어 [any](#Any) 도 `never`타입에 할당할 수 없다.
 
 ```typescript
 function A(message): never {
@@ -239,4 +240,20 @@ function A(message): never {
 function fail() {
   return A('return never');
 }
+```
+
+### Object
+
+`object`타입은 `number`, `string`, `boolean`, `bigint`, `symbol`, `null`, `undefined`같은 원시타입이 아닌 나머지 타입을 나타낸다.
+
+```typescript
+declare function create(o: object | null): void;
+
+create({ prop: 0 });
+create([1, 2, 3]);
+create(null);
+
+create(42); // compile error
+create('string'); // compile error
+create(false); // compile error
 ```
