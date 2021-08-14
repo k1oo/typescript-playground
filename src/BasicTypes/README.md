@@ -7,6 +7,7 @@ ___
 1. [Boolean](#Boolean)
 2. [Number](#Number)
 3. [String](#String)
+4. [Array](#Array)
 
 ___
 
@@ -56,4 +57,27 @@ console.log(typeof B, B); // string banana
 console.log(typeof C, C); // string cherry
 console.log(typeof D, D); // string This is banana
 console.log(typeof E, E); // string This is banana juice
+```
+
+### Array
+배열 타입은 특정 타입의 데이터만 담는 배열 선언이 가능하며, `any` 타입이나 ```OR(||)``` 연산자 등을 사용하여 여러 타입의 데이터를 담을 수도 있다.  
+배열 타입은 `: TYPE[]`이나 제너릭을 사용한 `: Array<TYPE>`으로 지정할 수 있다. 
+```typescript
+const A: boolean[] = [false, true];
+const B: number[] = [1, 2, 3];
+const C: Array<string> = ['kimchi', 'rice'];
+const D: Array<string | boolean> = [];
+const E: any[] = [false, 1, 2, 'kimchi'];
+
+// A.push(123); // compile error
+// D.push(123); // compile error
+D.push(true);
+D.push('kimchi');
+E.push(123);
+
+console.log(typeof A, A); // object [ false, true ]
+console.log(typeof B, B); // object [ 1, 2, 3 ]
+console.log(typeof C, C); // object [ 'kimchi', 'rice' ]
+console.log(typeof D, D); // object [ true, 'kimchi' ]
+console.log(typeof E, E); // object [ false, 1, 2, 'kimchi', 123 ]
 ```
