@@ -89,6 +89,16 @@ console.log(typeof D, D); // number 10
 console.log(typeof E, E); // number 484
 ```
 
+### BigInt
+`bigint`타입은 큰 정수를 처리할 수 있으며, 모든 `BigInt`의 집합으로 사칙연산, 비교 등의 연산을 지원한다.
+```typescript
+let A = 1234n; // bigint
+const B = 5678n; // 5678n
+const C = A + B; // bigint
+const D = A < 1235; // boolean
+const E: bigint = 100; // compile error
+```
+
 ### String
 
 텍스트 데이터 타입으로, 자바스크립트와 동일하게 쌍따옴표(`"..."`)나 따옴표(`'...'`)로 감싼 문자열 데이터가 이에 해당한다.  
