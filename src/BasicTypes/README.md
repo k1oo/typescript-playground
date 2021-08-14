@@ -8,12 +8,14 @@ ___
 2. [Unknown](#Unknown)
 3. [Boolean](#Boolean)
 4. [Number](#Number)
-3. [String](#String)
-4. [Array](#Array)
-5. [Tuple](#Tuple)
-6. [Enum](#Enum)
-8. [Void](#Void)
-9. [NullAndUndefined](#null-undefined)
+5. [BigInt](#BigInt)
+6. [String](#String)
+7. [Array](#Array)
+8. [Tuple](#Tuple)
+9. [Enum](#Enum)
+10. [Void](#Void)
+11. [NullAndUndefined](#null-undefined)
+12. [Never](#Never)
 
 ___
 
@@ -90,7 +92,9 @@ console.log(typeof E, E); // number 484
 ```
 
 ### BigInt
+
 `bigint`타입은 큰 정수를 처리할 수 있으며, 모든 `BigInt`의 집합으로 사칙연산, 비교 등의 연산을 지원한다.
+
 ```typescript
 let A = 1234n; // bigint
 const B = 5678n; // 5678n
@@ -220,4 +224,19 @@ result = null;
 ```typescript
 const A: undefined = undefined;
 const B: null = null;
+```
+
+### Never
+
+`never`타입은 절대 발생할 수 없는 타입을 나타내며, 예시로 항상 오류를 발생시키는 함수나 절대 반환하지 않는 타입으로 사용된다.  
+`never`타입은 모든 타입에 할당 가능한 하위 타입이지만 자신을 제외한 어떤 타입도 `never`타입에 할당하지 못하며, 하위 타입이 아니다. 심지어 [any](#Any) 도 `never`타입에 할당할 수 없다.   
+
+```typescript
+function A(message): never {
+  throw new Error(message);
+}
+
+function fail() {
+  return A('return never');
+}
 ```
