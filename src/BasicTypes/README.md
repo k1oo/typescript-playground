@@ -8,6 +8,8 @@ ___
 2. [Number](#Number)
 3. [String](#String)
 4. [Array](#Array)
+5. [Tuple](#Tuple)
+6. [Enum](#Enum)
 
 ___
 
@@ -98,4 +100,42 @@ A[0].toLowerCase();
 // A[1].toLowerCase(); // compile error. A[1]은 number 타입.
 
 // A[2] = '123'; // compile error. 정해지지 않은 인덱스 접근
+```
+
+### Enum
+
+열거 타입을 사용하면 개발자가 명명된 상수 집합을 정의할 수 있으며, 의도를 문서화하거나 별개의 사례 집합을 더 쉽게 만들 수 있다.  
+기본적으로 값을 지정해주지 않는 경우 0부터 시작하여 각 멤버마다 번호를 매긴다. 모든 값은 수동으로 설정이 가능하며, 첫 번째 혹은 중간 멤버의 번호가 변경될 경우 변경된 번호부터 다시 차례대로 증가한다.  
+또한 멤버에 매겨진 번호를 통해 접근하면, 해당 번호에 해당하는 멤버의 이름을 알아낼 수 있다.
+
+```typescript
+enum ColorDefault {
+  Red, // 0
+  Green, // 1
+  Blue // 2
+}
+
+const A: ColorDefault = ColorDefault.Blue;
+console.log(typeof A, A); // number 2
+console.log(A[2]); // Blue
+
+enum ColorRedAs1 {
+  Red = 1, // 1
+  Green, // 2
+  Blue // 3
+}
+
+const B: ColorRedAs1 = ColorRedAs1.Blue;
+console.log(typeof B, B); // number 3
+console.log(B[2]); // Green
+
+enum ColorDefined {
+  Red = 'Red',
+  Green = 'Green',
+  Blue = 'Blue',
+}
+
+const C: ColorDefined = ColorDefined.Blue;
+console.log(typeof C, C); // string Blue
+console.log(C[2]); // undefined
 ```
