@@ -17,7 +17,7 @@ ___
 11. [NullAndUndefined](#null-undefined)
 12. [Never](#Never)
 13. [Object](#Object)
-
+14. [TypeAssertions](#타입-단언(Type-Assertions))
 ___
 
 ### Any
@@ -257,3 +257,22 @@ create(42); // compile error
 create('string'); // compile error
 create(false); // compile error
 ```
+
+### 타입 단언(Type Assertions)
+
+가끔 Typescript보다 개발자가 값을 더 잘 알고 있을 경우가 있는데, 이럴 때 `타입 단언`을 이용한다.  
+`타입 단언`은 컴파일러에게 "날 믿어, 난 내가 뭘 하고 있는지 알아."라고 말해주는 방법이며, 다른 언어의 타입 변환과 유사하지만 다른 특별한 검사를 하거나 값을 재구성하진 않는다.  
+이 행동은 런타임에 영향을 미치지 않는다.
+
+타입 단언은 `angle-bracket`문법과 `as`문법, 총 두 가지 형태가 있다.
+
+```typescript
+const A: any = 'string';
+
+// angle-bracket
+console.log((<string>A).length); // 6
+
+// as
+console.log((A as string).length); // 6
+```
+위 두 예제는 동일하지만, Typescript와 JSX를 함께 사용할 때는 `as`문법만 허용된다.
