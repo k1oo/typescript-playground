@@ -11,6 +11,7 @@ ___
 5. [Tuple](#Tuple)
 6. [Enum](#Enum)
 7. [Any](#Any)
+8. [Void](#Void)
 
 ___
 
@@ -105,7 +106,7 @@ A[0].toLowerCase();
 
 ### Enum
 
-열거 타입을 사용하면 개발자가 명명된 상수 집합을 정의할 수 있으며, 의도를 문서화하거나 별개의 사례 집합을 더 쉽게 만들 수 있다.  
+`enum` 타입을 사용하면 개발자가 명명된 상수 집합을 정의할 수 있으며, 의도를 문서화하거나 별개의 사례 집합을 더 쉽게 만들 수 있다.  
 기본적으로 값을 지정해주지 않는 경우 0부터 시작하여 각 멤버마다 번호를 매긴다. 모든 값은 수동으로 설정이 가능하며, 첫 번째 혹은 중간 멤버의 번호가 변경될 경우 변경된 번호부터 다시 차례대로 증가한다.  
 또한 멤버에 매겨진 번호를 통해 접근하면, 해당 번호에 해당하는 멤버의 이름을 알아낼 수 있다.
 
@@ -142,8 +143,10 @@ console.log(C[2]); // undefined
 ```
 
 ### Any
+
 `any`타입은 코드를 작성하며 알지 못하는 타입을 표현할 때 사용할 수 있으며, 컴파일 중에 점진적으로 타입 검사를 진행하거나, 아예 검사를 하지 않을 수 있다.  
 예를 들어 사용자로부터 받은 데이터나 서드 파티 라이브러리 등을 사용해 받은 값의 타입을 검사하지 않고, 컴파일 타임에 통과시킬 수 있다.
+
 ```typescript
 let A: any;
 A = 'string';
@@ -164,4 +167,20 @@ console.log(typeof A, A); // object [ 1, 2, 'string' ]
 A = { number: 1, string: 'string' };
 A.toLowerCase(); // not compile error, runtime error
 console.log(typeof A, A); // object { number: 1, string: 'string' }
+```
+
+### Void
+
+`void`는 어떤 타입도 존재할 수 없음을 나타내며, 보통 함수의 반환값이 없을 때 반환 타입으로 사용한다.  
+`void`타입에는 `null(--strictNullCheck를 사용하지 않는 경우)` 혹은 `undefined`만 할당할 수 있기 때문에 변수의 타입으로 사용하는 것은 유용하지 못하다.
+
+```typescript
+function F(): void {
+  console.log('return void');
+}
+
+let result: void = F();
+result = undefined;
+result = null;
+// result = 'success'; // compile error
 ```
