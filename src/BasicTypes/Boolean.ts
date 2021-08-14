@@ -1,11 +1,8 @@
 /**
- *
  * 참 / 거짓 (True / False) 타입
  */
-
-const A: boolean = true;
-const B: boolean = false;
-// const C: boolean = 0; // Error
-
-console.log(typeof A, A); // boolean true
-console.log(typeof B, B); // boolean false
+const A = true; // boolean
+const B = false; // boolean
+const C: true = true; // true
+// const D: false = true; // compile error
+// const E: boolean = 1; // TS2322: Type 'number' is not assignable to type 'boolean'.

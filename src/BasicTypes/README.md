@@ -6,8 +6,8 @@ ___
 
 1. [Any](#Any)
 2. [Unknown](#Unknown)
-2. [Boolean](#Boolean)
-2. [Number](#Number)
+3. [Boolean](#Boolean)
+4. [Number](#Number)
 3. [String](#String)
 4. [Array](#Array)
 5. [Tuple](#Tuple)
@@ -61,18 +61,19 @@ if (typeof A === 'number') {
 
 ### Boolean
 
-가장 기본적인 타입으로, 참 / 거짓 (true / false)이 이에 해당한다.
+`boolean`타입은 `true(참)`, `false(거짓)` 두 개의 값을 가지며, 비교 연산과 반전 연산을 할 수 있다.
 
 ````typescript
-const A: boolean = true;
-const B: boolean = false;
-const C: boolean = 1; // TS2322: Type 'number' is not assignable to type 'boolean'.
+const A = true; // boolean
+const B = false; // boolean
+const C: true = true; // true
+const D: false = true; // compile error
+const E: boolean = 1; // TS2322: Type 'number' is not assignable to type 'boolean'.
 ````
 
 ### Number
 
-자바스크립트와 동일하게 타입스크립트의 모든 숫자는 부동 소수 값이며, 부동 소수에는 `number` 타입을 사용한다.  
-16진수, 10진수, 8진수, 2진수, 소수 등이 이에 해당한다.
+`number`타입은 모든 숫자(정수, 소수, 양수, 음수, Infinity, NaN 등)의 집합이며, 시착연산과 비교 등 숫자 관련 연산을 수행할 수 있다.
 
 ```typescript
 const A: number = 0;
