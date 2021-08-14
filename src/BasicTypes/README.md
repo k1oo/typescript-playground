@@ -4,8 +4,9 @@ ___
 
 ### 목차
 
-1. [Boolean](###Boolean)
-2. [Number](###Number)
+1. [Boolean](#Boolean)
+2. [Number](#Number)
+3. [String](#String)
 
 ___
 
@@ -36,4 +37,23 @@ console.log(typeof B, B); // number 1.2
 console.log(typeof C, C); // number 65535
 console.log(typeof D, D); // number 10
 console.log(typeof E, E); // number 484
+```
+
+### String
+
+텍스트 데이터 타입으로, 자바스크립트와 동일하게 쌍따옴표(`"..."`)나 따옴표(`'...'`)로 감싼 문자열 데이터가 이에 해당한다.  
+또한 백틱(`` `...` ``)을 이용해 감싼 템플릿 리터럴도 이에 해당한다.
+
+```typescript
+const A: string = 'apple';
+const B: string = 'banana';
+const C: string = `cherry`;
+const D: string = `This is ${B}`;
+const E: string = `This is ${B + ' juice'}`;
+
+console.log(typeof A, A); // string apple
+console.log(typeof B, B); // string banana
+console.log(typeof C, C); // string cherry
+console.log(typeof D, D); // string This is banana
+console.log(typeof E, E); // string This is banana juice
 ```
