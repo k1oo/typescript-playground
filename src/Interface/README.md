@@ -5,6 +5,7 @@ ___
 ### 목차
 
 1. [Interface](#Interface)
+2. [Optional Properties](#Optional-Properties)
 
 ___
 
@@ -33,4 +34,30 @@ function B(labelObj: LabelObject) {
 }
 
 B(labelObj); // string
+```
+
+### Optional Properties
+
+때때로 인터페이스의 모든 값이 필요하지 않을 경우가 발생하고 그럴 때 사용된다.  
+일반적인 인터페이스를 만들 때와의 형태과 비슷하지만, 선택적 프로퍼티는 프로퍼티 이름 끝에 `?`를 붙여 표시한다.
+
+```typescript
+interface CharacterConfig {
+  name?: string,
+  age?: number
+}
+
+function createCharacter(config: CharacterConfig): { name: string, age: number } {
+  const newCharacter = { name: 'DEFAULT_NAME', age: 20 };
+  if (config.name) {
+    newCharacter.name = config.name;
+  }
+  if (config.age) {
+    newCharacter.age = config.age;
+  }
+  return newCharacter;
+}
+
+const A = createCharacter({ name: 'k1oo' });
+console.log(A); // { name: 'k1oo', age: 20 }
 ```
