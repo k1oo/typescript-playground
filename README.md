@@ -1,8 +1,9 @@
 # typescript-playground
 
-- **참고한 사이트**
+**References**
 - [Typescript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [Poiema Web](https://poiemaweb.com)
+- [타입스크립트 프로그래밍](http://www.yes24.com/Product/Goods/90265564)
 
 ___
 
