@@ -6,6 +6,7 @@ ___
 
 1. [Interface](#Interface)
 2. [Optional Properties](#Optional-Properties)
+3. [Readonly Properties](#Readonly-Properties)
 
 ___
 
@@ -60,4 +61,27 @@ function createCharacter(config: CharacterConfig): { name: string, age: number }
 
 const A = createCharacter({ name: 'k1oo' });
 console.log(A); // { name: 'k1oo', age: 20 }
+```
+
+### Readonly Properties
+
+때때로 인터페이스의 프로퍼티들이 수정되지 않아야 할 경우에 사용되며, 프로퍼티 이름 앞에 `readonly` 키워드를 붙여 사용할 수 있다.  
+일부에만 적용할 수도 있으며, 모든 프로퍼티에 대해 적용할 수 있다.  
+배열의 경우에는 `ReadonlyArray<T>`타입을 사용하여 값이 변경되지 않는 배열을 제공한다.
+
+```typescript
+interface Square {
+  readonly width: number,
+  readonly height: number,
+}
+
+const square1: Square = { width: 10, height: 10 };
+square1.height = 1; // compile error
+
+const A: number[] = [1, 2, 3, 4];
+A[0] = 3;
+console.log(A); // [ 3, 2, 3, 4 ]
+
+const B: ReadonlyArray<number> = [1, 2, 3, 4];
+B[0] = 3; // compile error
 ```
