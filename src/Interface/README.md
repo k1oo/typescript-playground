@@ -8,6 +8,8 @@ ___
 2. [Optional Properties](#Optional-Properties)
 3. [Readonly Properties](#Readonly-Properties)
 4. [Excess Property Checks](#Excess-Property-Checks)
+5. [Function Types](#Function-Types)
+6. [Indexable Types](#Indexable-Types)
 
 ___
 
@@ -163,4 +165,39 @@ search2 = function (src, sub) {
   // return 'string' // compile error
   return search(src, sub);
 };
+```
+
+### Indexable Types
+함수 타입과 유사하게 `a[10]`, `[ageMap]['Banana]'`처럼 타입을 **인덱스**로 기술할 수 있다.  
+인덱스 시그니처는 "사전" 패턴을 기술하는데 강력한 방법이지만, 모든 프로퍼티들의 타입이 일치하도록 강제하기에 새로 추가되는 타입은 인덱스 시그니처의와 일치하거나 하위 타입이어야 한다.  
+하지만 인덱스 시그니처가 프로퍼티 타입들의 합집합이라면 다른 타입의 프로퍼티도 허용할 수 있다.  
+또한 인덱스의 새로운 할당을 막기 위해 `읽기 전용 인덱스 시그니처`로도 만들 수 있다.
+
+```typescript
+interface StringArray {
+  [index: number]: string;
+}
+
+let stringArray: StringArray;
+stringArray = ['Apple', 'Banana'];
+
+
+interface NumberDictionary {
+  [index: string]: number;
+  length: number;
+  name: string; // compile error
+}
+
+interface NumberOrStringDictionary {
+  [index: string]: number | string;
+  length: number;
+  name: string;
+}
+
+interface ReadonlyStringArray {
+  readonly [index: number]: string;
+}
+
+let array: ReadonlyStringArray = ['Apple', 'Banana'];
+array[2] = 'Cherry'; // compile error
 ```
