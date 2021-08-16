@@ -139,3 +139,28 @@ function createSquare2(square: SquareConfig2) {
 
 const square3 = createSquare2({ color: 'red', width: 10, opacity: 0.5 });
 ```
+
+### Function Types
+
+인터페이스로 함수 타입 또한 지정할 수 있으며, 매개변수의 타입과 반환 타입이 모두 필요하다. 한 번 정의된 함수 타입 인터페이스는 다른 인터페이스들처럼 사용할 수 있다.  
+함수 인터페이스를 사용하더라도, 해당 인터페이스에 정의된 매개변수의 이름과 같아야 할 필요는 없다.  
+또한 타입을 지정해주지 않더라도, 타입스크립트의 `문맥상 타이핑`이 인수 타입을 추론할 수 있다.  
+함수의 반환 타입이 인터페이스에 정의된 반환 타입과 다르다면, 컴파일 에러를 발생시킨다.
+
+```typescript
+interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+
+let search: SearchFunc;
+search = function (src: string, sub: string): boolean {
+  let result = src.search(sub);
+  return result > -1;
+};
+
+let search2: SearchFunc;
+search2 = function (src, sub) {
+  // return 'string' // compile error
+  return search(src, sub);
+};
+```
