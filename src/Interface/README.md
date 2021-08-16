@@ -7,6 +7,7 @@ ___
 1. [Interface](#Interface)
 2. [Optional Properties](#Optional-Properties)
 3. [Readonly Properties](#Readonly-Properties)
+4. [Excess Property Checks](#Excess-Property-Checks)
 
 ___
 
@@ -84,4 +85,57 @@ console.log(A); // [ 3, 2, 3, 4 ]
 
 const B: ReadonlyArray<number> = [1, 2, 3, 4];
 B[0] = 3; // compile error
+```
+
+`readonly`와 `const` 중 어떤 것이 적절한지를 판단하기 좋은 방법은 변수와 프로퍼티 중 어느 곳에 사용할 지 확인해보는 것이다.  
+변수에는 `const`, 프로퍼티에는 `readonly` 사용한다.
+
+### Excess Property Checks
+
+인터페이스를 사용하여 매개변수 등의 타입을 지정할 때, 인터페이스에 해당하지 않는 프로퍼티가 존재할 경우 에러를 컴파일 에러를 발생시킨다.  
+이 검사를 피하는 방법은 `타입 단언`을 사용하는 것이다. 타입 단언을 사용하면 간단하게 이 검사를 피할 수 있다.  
+하지만 특별한 경우에, 추가 프로퍼티가 있음을 확신한다면, `문자열 인덱스 서명`을 추가하는 것도 고려해봐야 한다.  
+`문자열 인덱스 서명`을 추가하면 해당 프로퍼티와 일치하는 타입의 프로퍼티를 추가로 전달할 수 있다.
+
+```typescript
+interface SquareConfig {
+  color?: string;
+  width?: number;
+}
+
+function createSquare(square: SquareConfig) {
+  const newSquare = { color: 'white', width: 10 };
+  if (square.color) {
+    newSquare.color = square.color;
+  }
+  if (square.width) {
+    newSquare.width = square.width;
+  }
+
+  return newSquare;
+}
+
+const square1 = createSquare({ color: 'red', width: 20, opacity: 0.5 }); // compile error
+const square2 = createSquare({ color: 'red', width: 20, opacity: 0.5 } as SquareConfig);
+
+interface SquareConfig2 {
+  color?: string;
+  width?: number;
+
+  [propName: string]: any;
+}
+
+function createSquare2(square: SquareConfig2) {
+  const newSquare = { color: 'white', width: 10 };
+  if (square.color) {
+    newSquare.color = square.color;
+  }
+  if (square.width) {
+    newSquare.width = square.width;
+  }
+
+  return newSquare;
+}
+
+const square3 = createSquare2({ color: 'red', width: 10, opacity: 0.5 });
 ```
