@@ -10,6 +10,7 @@ ___
 4. [Excess Property Checks](#Excess-Property-Checks)
 5. [Function Types](#Function-Types)
 6. [Indexable Types](#Indexable-Types)
+7. [Extending Interfaces](#Extending-Interfaces)
 
 ___
 
@@ -168,6 +169,7 @@ search2 = function (src, sub) {
 ```
 
 ### Indexable Types
+
 함수 타입과 유사하게 `a[10]`, `[ageMap]['Banana]'`처럼 타입을 **인덱스**로 기술할 수 있다.  
 인덱스 시그니처는 "사전" 패턴을 기술하는데 강력한 방법이지만, 모든 프로퍼티들의 타입이 일치하도록 강제하기에 새로 추가되는 타입은 인덱스 시그니처의와 일치하거나 하위 타입이어야 한다.  
 하지만 인덱스 시그니처가 프로퍼티 타입들의 합집합이라면 다른 타입의 프로퍼티도 허용할 수 있다.  
@@ -184,12 +186,14 @@ stringArray = ['Apple', 'Banana'];
 
 interface NumberDictionary {
   [index: string]: number;
+
   length: number;
   name: string; // compile error
 }
 
 interface NumberOrStringDictionary {
   [index: string]: number | string;
+
   length: number;
   name: string;
 }
@@ -200,4 +204,30 @@ interface ReadonlyStringArray {
 
 let array: ReadonlyStringArray = ['Apple', 'Banana'];
 array[2] = 'Cherry'; // compile error
+```
+
+### Extending Interfaces
+
+인터페이스는 다른 인터페이스의 멤버를 복사해서 확장시킬 수 있는 기능을 제공하며, 여러 인터페이스를 확장할 수도 있어 모든 인터페이스의 조합을 만들 수 있다.
+
+```typescript
+interface Shape {
+  color: string,
+}
+
+interface Square extends Shape {
+  sideLength: number;
+}
+
+const square: Square = { color: 'red', sideLength: 10 };
+
+interface PenStroke {
+  penWidth: number;
+}
+
+interface Square2 extends Shape, PenStroke {
+  sideLength: number;
+}
+
+const square2: Square2 = { color: 'red', sideLength: 10, penWidth: 2 };
 ```
