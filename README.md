@@ -73,4 +73,4 @@ const A: TYPE = ... // A의 타입은 TYPE
 ___
 
 1. [기본 타입(BasicTypes)](/src/BasicTypes/README.md)
-1. [인터페이스(Interface)](/src/BasicTypes/README.md)
+1. [인터페이스(Interface)](/src/Interface/README.md)
