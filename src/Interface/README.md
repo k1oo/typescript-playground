@@ -11,6 +11,7 @@ ___
 5. [Function Types](#Function-Types)
 6. [Indexable Types](#Indexable-Types)
 7. [Extending Interfaces](#Extending-Interfaces)
+8. [Hybrid Types](#Hybrid-Types)
 
 ___
 
@@ -212,7 +213,7 @@ array[2] = 'Cherry'; // compile error
 
 ```typescript
 interface Shape {
-  color: string,
+  color: string;
 }
 
 interface Square extends Shape {
@@ -230,4 +231,31 @@ interface Square2 extends Shape, PenStroke {
 }
 
 const square2: Square2 = { color: 'red', sideLength: 10, penWidth: 2 };
+```
+
+### Hybrid Types
+
+인터페이스에는 자바스크립트에 존재하는 다양한 타입들을 기술할 수 있으며, 여러 타입의 조합으로 된 인터페이스를 만들 수도 있다.  
+예시로, 함수와 객체 모두를 수행하는 타입을 만들 수 있다.
+
+```typescript
+interface Counter {
+  (start: number): string;
+  interval: number;
+  reset(): void
+}
+
+function getCounter(): Counter {
+  const counter = (function (start: number) {
+  }) as Counter;
+  counter.interval = 123;
+  counter.reset = function () {
+  };
+  return counter;
+}
+
+const c = getCounter();
+c(10);
+c.interval = 10;
+c.reset();
 ```
