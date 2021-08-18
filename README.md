@@ -1,6 +1,7 @@
 # typescript-playground
 
 **References**
+
 - [Typescript Handbook](https://www.typescriptlang.org/docs/handbook/intro.html)
 - [Poiema Web](https://poiemaweb.com)
 - [타입스크립트 프로그래밍](http://www.yes24.com/Product/Goods/90265564)
@@ -65,7 +66,8 @@ console.log(4 / []) // TS2363: The right-hand side of an arithmetic operation mu
 타입스크립트는 일반 변수, 매개 변수, 객체 속성 등에 `: TYPE`의 형태로 타입을 지정할 수 있다.
 
 ```typescript
-const A: TYPE = ... // A의 타입은 TYPE
+const A: TYPE =
+... // A의 타입은 TYPE
 ```
 
 ## 목차
@@ -73,4 +75,5 @@ const A: TYPE = ... // A의 타입은 TYPE
 ___
 
 1. [기본 타입(BasicTypes)](/src/BasicTypes/README.md)
-1. [인터페이스(Interface)](/src/Interface/README.md)
+2. [인터페이스(Interface)](/src/Interface/README.md)
+3. [함수(Functions)](/src/Functions/README.md)
